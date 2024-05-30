@@ -5,6 +5,6 @@ module.exports = async (req, res) => {
         const newUser = await User.createUser(req.body)
         res.status(200).json({data: newUser});
     } catch (error) {
-        res.status(400).json({error})   
+        res.status(400).json({error: error.message})   
     }
 }

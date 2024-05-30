@@ -7,7 +7,7 @@ module.exports = {
             
             res.status(200).json({data: userData});
         } catch (error) {
-            res.status(400).json({error})   
+            res.status(400).json({error: error.message})   
         }
     },
     getOneByAccountNumber: async (req, res) => {
@@ -17,7 +17,7 @@ module.exports = {
             
             res.status(200).json({data: userData});
         } catch (error) {
-            res.status(400).json({error})   
+            res.status(400).json({error: error.message})   
         }
     },
     getOneByIdentityNumber: async (req, res) => {
@@ -27,7 +27,7 @@ module.exports = {
             
             res.status(200).json({data: userData});
         } catch (error) {
-            res.status(400).json({error})   
+            res.status(400).json({error: error.message})   
         }
     }
 }
