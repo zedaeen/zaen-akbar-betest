@@ -22,6 +22,15 @@ class User extends db.User {
             throw error
         }
     }
+    static async getOneUserByAccount(value) {
+        const user = await db.User.findOne({accountNumber: value})
+        return user
+    }
+    static async getOneUserByIdentity(value) {
+        const user = await db.User.findOne({identityNumber: value})
+        return user
+    }
+    
 }
 
 module.exports = User
