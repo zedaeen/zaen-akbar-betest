@@ -3,6 +3,8 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const path = require('path');
 
+const routes = require("./routes")
+
 // Load environment variables from .env file
 dotenv.config({path: path.join(__dirname, '../.env')});
 
@@ -12,7 +14,7 @@ app.use(cors())
 app.use(express.json());
 
 // Basic route
-app.get('/api', (req, res) => { res.send("OK") });
+app.use('/api', routes(express));
 
 // Start the server
 const port = process.env.PORT || 3001;
