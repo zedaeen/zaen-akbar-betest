@@ -1,8 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const cors = require('cors');
 const path = require('path');
 
+const middlewares = require("./middlewares")
 const routes = require("./routes")
 
 // Load environment variables from .env file
@@ -10,8 +10,7 @@ dotenv.config({path: path.join(__dirname, '../.env')});
 
 const app = express();
 
-app.use(cors())
-app.use(express.json());
+middlewares(app, express)
 
 // Basic route
 app.use('/api', routes(express));
