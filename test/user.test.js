@@ -76,3 +76,14 @@ describe("Update User Service Unit Tests", function () {
         await User.deleteOne({ accountNumber: '11111' })
     });  
 });
+
+describe("Delete User Service Unit Tests", function () {
+    it("should successfully delete a user by id", async function () {
+        const user = await createDataTest(User)
+
+        await User.deleteOne({_id: user.id})
+
+        const getUser = await User.findOne({ _id: user.id})
+        expect(getUser).to.equal(null)
+    });
+});
