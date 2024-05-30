@@ -3,12 +3,14 @@ const createUserController = require("../controllers/user/create")
 const updateUserController = require("../controllers/user/update")
 const deleteUserController = require("../controllers/user/delete")
 
+const {redisCachingMiddleware} = require("../db/redis")
+
 module.exports = (express) => {
     const router = express.Router();
 
-    router.get('/', getUserController.getAll);
-    router.get('/account-number/:accountNumber', getUserController.getOneByAccountNumber);
-    router.get('/identity-number/:identityNumber', getUserController.getOneByIdentityNumber);
+    router.get('/', redisCachingMiddleware, getUserController.getAll);
+    router.get('/account-number/:accountNumber', redisCachingMiddleware, getUserController.getOneByAccountNumber);
+    router.get('/identity-number/:identityNumber', redisCachingMiddleware, getUserController.getOneByIdentityNumber);
 
     router.post('/', createUserController)
     router.patch('/:id', updateUserController)
