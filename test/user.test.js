@@ -59,3 +59,20 @@ describe("Get User Service Unit Tests", function () {
         await User.deleteOne({ identityNumber: 'a121' })
     });  
 });
+
+describe("Update User Service Unit Tests", function () {
+    it("should successfully update a user by id", async function () {
+        const user = await createDataTest(User)
+        const newUser = {
+            userName: 'b'
+        }
+        
+        // update one user by id function
+        await User.updateUserById(user.id, newUser)
+        
+        const updatedUser = await User.findOne({ _id: user.id })
+        expect(updatedUser.userName).to.equal('b')
+        
+        await User.deleteOne({ accountNumber: '11111' })
+    });  
+});
